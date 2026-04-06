@@ -117,4 +117,34 @@ public class LinkedLists {
         }
         return array;
     }
+
+    public void reverseLinkedList(){
+        if(isEmpty()) return;
+        var previous = first;
+        var current = first.next;
+
+        while (current != null){
+            var forward = current.next;
+            current.next = previous;
+            previous = current;
+            current = forward;
+        }
+
+        last = first;
+        last.next = null;
+        first = previous;
+    }
+
+    public int getKthNodeFromEnd(int k){
+        var current = first;
+        var second = first;
+        for(int i = 0; i < k - 1; i++){
+            second = second.next;
+        }
+        while (second.next !=null){
+            current = current.next;
+            second = second.next;
+        }
+        return current.value;
+    }
 }
